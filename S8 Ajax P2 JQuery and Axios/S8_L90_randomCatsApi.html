@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random cats API</title>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Random Cats API</h1>
+        </header>
+        <main>
+            <div>
+                <img id="img" src="" alt="" height="300">
+                <button id="btn">Get random Cat!</button>
+            </div>
+        </main>
+        <script>
+            $("#btn").click(function() {
+                let url = 'http://aws.random.cat/meow';
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: url
+                })
+                .done(function(data) {
+                    console.log(data.file);
+                    $("#img").attr("src", data.file);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
+            });
+        </script>
+    </body>
+</html>

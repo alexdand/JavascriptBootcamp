@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Random Image Dogs Website</title>
+    <style>
+      h1 { text-align: center; }
+      img { height: 300px; }
+      button { margin: 20px; }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1>Welcome to random dog images website</h1>
+      <img id="img" src="https://dog.ceo/api/img/deerhound-scottish/n02092002_6780.jpg" alt="dog">
+      <button id="btn" type="button" name="button">Get Random Dog!</button>
+    </div>
+
+    <script>
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", function() {
+        let XHR = new XMLHttpRequest();
+
+        XHR.onreadystatechange = function() {
+          if (XHR.readyState === 4 && XHR.status === 200) {
+            let response = JSON.parse(XHR.responseText);
+            document.querySelector("#img").src = response.message;
+          }
+        }
+
+        XHR.open("GET", "https://dog.ceo/api/breeds/image/random");
+        XHR.send();
+      });
+    </script>
+
+  </body>
+
+</html>

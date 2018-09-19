@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Axios introduction</title>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    </head>
+    <body>
+        <main>
+            <p id="p"></p>
+        </main>
+        <script>
+
+            let url = "https://opentdb.com/api.php?amount=1";
+            let p = document.querySelector("#p");
+
+            axios.get(url)
+                .then(function(res) {
+                    p.innerText = res.data.results[0].question;
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+
+        </script>
+    </body>
+</html>

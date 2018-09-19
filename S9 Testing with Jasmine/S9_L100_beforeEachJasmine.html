@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jasmine Tests</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine.css">
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/boot.js"></script>
+    <script>
+    describe("Array push", function() {
+        let arr;
+        beforeEach(function() {
+            arr = [1, 3, 5];
+        });
+        it("adds an element to the array", function() {
+            arr.push(7);
+            expect(arr).toEqual([1, 3, 5, 7])
+        });
+        it("increases the length of array", function() {
+            expect(arr.push(7)).toBe(4);
+        });
+        it("adds anything to the array", function() {
+            expect(arr.push({})).toBe(4);
+        })
+    });
+    </script>
+</body>
+</html>
