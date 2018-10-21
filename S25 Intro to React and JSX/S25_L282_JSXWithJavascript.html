@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component 1</title>
+    <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <style>
+        #app {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    class HobbyList extends React.Component {
+        render() {
+            const hobbies = ["Eat", "Purr", "Sleep"];
+            const liStyle = { fontSize: '1.5em' };
+            return (
+                <ul>
+                    { hobbies.map((h,i) => <li key={i} style={liStyle}>{h}</li>) }
+                </ul>
+            );
+        }
+    }
+    class Pet extends React.Component {
+        render() {
+            return (
+                <div className="card">
+                    <h2 className="name">Moxie</h2>
+                    <img src="https://www.readersdigest.ca/wp-content/uploads/sites/14/2011/01/4-ways-cheer-up-depressed-cat.jpg" alt="" width="600" />
+                    <h4>Hobbies</h4>
+                    <HobbyList/>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(<Pet />, document.getElementById("app"));
+  </script>
+</body>
+</html>
