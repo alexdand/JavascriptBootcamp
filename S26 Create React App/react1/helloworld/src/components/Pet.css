@@ -1,0 +1,9 @@
+.container {
+    background-color: #c6fff7;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.img {
+    border-radius: 5%;
+}
