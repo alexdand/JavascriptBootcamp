@@ -1,28 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            instructors: [ {name: 'Tom', hobbies: ['Trekking','React'] }, { name: 'Jerry',hobbies: ['Sailing', 'D3'] }, { name: 'Itchy',hobbies: ['Play Pianola','Node'] } ]
+        };
+
+        setTimeout(() => {
+            const randomInstructor = Math.floor(Math.random() * this.state.instructors.length);
+            const hobbyIndex = Math.floor(Math.random() * this.state.instructors[randomInstructor].hobbies.length);
+            // const instructors = this.state.instructors.slice();
+            // create a new object
+            // instructors[randomInstructor] = Object.assign({}, instructors[randomInstructor]);
+            // instructors[randomInstructor].hobbies = instructors[randomInstructor].hobbies.slice();
+            // instructors[randomInstructor].hobbies.splice(hobbyIndex, 1);
+            const instructors = this.state.instructors.map((inst,i) => {
+                if (i === randomInstructor) {
+                    const hobbies = inst.hobbies.slice();
+                    hobbies.splice(hobbyIndex, 1);
+                    return { ...inst, hobbies }
+                }
+                return inst;
+            });
+            this.setState({instructors});
+        }, 5000);
+    }
+    render() {
+        const instructors = this.state.instructors.map((instructor, index) => (
+            <li key={index}>
+                <h2> { instructor.name } </h2>
+                <h4> Hobbies: { instructor.hobbies.join(", ") } </h4>
+            </li>
+        ));
+        return (
+            <div className="App">
+                <ul>
+                    { instructors }
+                </ul>
+            </div>
+        );
+    }
 }
 
 export default App;
